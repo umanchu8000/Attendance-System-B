@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
+  before_action :correct_user, only: [:edit, :update, :show]
+  before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info, :index]
   before_action :set_one_month, only: :show
 
   def index
-    @users = User.paginate(page: params[:page])
+    # @users = User.paginate(page: params[:page])
+    @users = User.where('name LIKE ?',"%#{params[:name]}%").paginate(page: params[:page], per_page: 10)
   end
   
   def show
@@ -49,6 +50,9 @@ class UsersController < ApplicationController
   def edit_basic_info
   end
   
+  def edit_all
+  end
+  
   def update_basic_info
     if @user.update_attributes(basic_info_params)
       flash[:success] = "#{@user.name}の基本情報を更新しました。"
@@ -68,4 +72,5 @@ class UsersController < ApplicationController
     def basic_info_params
       params.require(:user).permit(:department, :basic_time, :work_time)
     end
+    
 end
