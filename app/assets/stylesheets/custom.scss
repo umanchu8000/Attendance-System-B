@@ -47,7 +47,7 @@ h2 {
 
 p {
   font-size: 1.1em;
-  line-height: 3.0em;
+  line-height: 1.7em;
 }
 
 /* header */
@@ -68,18 +68,6 @@ p {
   text-decoration: none;
 }
 
-/* debug */
-
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-}
-
 /* error_messages */
 
 #error_explanation {
@@ -95,6 +83,43 @@ p {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+/* ユーザー情報テーブル */
+
+.user-table {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.label-signup {
+  margin-top: 5px;
+}
+
+.btn-signup {
+  margin-top: 10px;
+}
+
+/* ログインフォーム */
+
+.label-login {
+  margin-top: 5px;
+}
+
+.btn-login {
+  margin-top: 10px;
+}
+
+/* debug */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
 }
 
 /* モーダルウインドウの位置調整 */

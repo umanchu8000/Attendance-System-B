@@ -11,11 +11,18 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
+  has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  
   validates :department, length: { in: 2..50 }, allow_blank: true
   validates :basic_time, presence: true
   validates :work_time, presence: true
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  
+  # あいまい検索機能
+  def self.search(search)
+    search ? where('name LIKE ?', "%#{search}%") : all
+  end
+  
   
   # 渡された文字列のハッシュ値を返します。
   def User.digest(string)
